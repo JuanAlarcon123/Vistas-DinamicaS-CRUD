@@ -9,8 +9,8 @@ const productsController = require('../controllers/productsController');
 router.get('/', productsController.index); 
 
 /*** CREATE ONE PRODUCT ***/ 
-router.get('/create', productsController.create); 
-router.post('/store', productsController.store); 
+router.get('/create', productsController.create); //recibe los datos del formulario
+router.post('/store', productsController.store); // este los procesa
 
 
 /*** GET ONE PRODUCT ***/ 
@@ -18,7 +18,7 @@ router.get('/detail/:id', productsController.detail);
 
 /*** EDIT ONE PRODUCT ***/ 
 router.get('/edit/:id', productsController.edit); 
-router.put('/:id', productsController.update); // el PUT actualiza la informacion del Get
+router.put('/update/:id', productsController.update); // el PUT actualiza la informacion del Get
 
 
 /*** DELETE ONE PRODUCT***/ 

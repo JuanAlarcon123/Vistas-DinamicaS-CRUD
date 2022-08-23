@@ -14,7 +14,8 @@ const controller = {
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		let product = products.find(product => product.id === +req.params.id)
+		let product = products.find(product => product.id === +req.params.id)// aca filtro los productos i se hace visible el producto que sea ifual al id
+	
 		res.render('detail',{
 			product, toThousand
 		})
