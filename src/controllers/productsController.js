@@ -1,8 +1,6 @@
-const fs = require('fs');
-const path = require('path');
+const{loadProducts,storeProducts}=require('../data/productsModule')
+const products = loadProducts()
 
-const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -15,6 +13,7 @@ const controller = {
 	// Detail - Detail from one product
 	
 	detail: (req, res) => {
+
 		let product = products.find(product => product.id === +req.params.id)// aca filtro los productos i se hace visible el producto que sea ifual al id
 	
 		res.render('detail',{
@@ -36,6 +35,7 @@ const controller = {
 
 	// Update - Form to edit
 	edit: (req, res) => {
+
 		const product = products.find ( product => product.id === +req.params.id)
 		res.render('product-edit-form', {product
 		})
@@ -43,7 +43,9 @@ const controller = {
 	},
 	// Update - Method to update
 	update: (req, res) => {
+
 		const {name,description,price,discount,category} = req.body
+		
 		const productModify = products.map(product => { 
 			if(product.id === +req.params.id) {
 				return {
@@ -57,9 +59,8 @@ const controller = {
 				return product
 		})
 
-		fs.writeFileSync(path.join(__dirname,'..','data','productsDataBase.json'), JSON.stringify(productModify),'utf-8')
-		res.redirect('/')
-
+		storeProducts(productModify) //'ejecuta la funcion y toma como parametro la funcion que quiere guardar el el Json'
+res.redirect('/')
 		// Do the magic
 	} ,
 
