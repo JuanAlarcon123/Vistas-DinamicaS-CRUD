@@ -142,14 +142,5 @@
       "category": "in-sale",
       "description": "Deja que la música dance cobre vida con EXTRA BASS™ Anima el ambiente con EXTRA BASS™1. Un radiador pasivo trabaja con el parlante monoaural para potenciar los tonos bajos y mejorar los graves, a pesar del tamaño compacto.",
       "image": "img-parlante-sony.jpg"
-   },
-   {
-      "id": 17,
-      "name": "Zapatillas Runfalcon - Negro adidas",
-      "description": "Acumulá kilómetros con estas zapatillas de running livianas que te ofrecen una excelente comodidad y amortiguación mientras corrés en las calles o en el gimnasio. Incorporan un exterior liviano en una mezcla de materiales y un refuerzo en la zona media del pie que garantiza una mayor sujeción.",
-      "category": "in-sale",
-      "discount": 20,
-      "price": 25000,
-      "image": "default-image.png"
    }
 ]

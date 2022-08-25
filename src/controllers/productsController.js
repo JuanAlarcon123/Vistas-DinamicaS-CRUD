@@ -8,7 +8,7 @@ const controller = {
 	index: (req, res) => {
 		const products = loadProducts()
 
-		return res.render('products',{ products, toThousand})
+		return res.render('products', { products, toThousand })
 		// Do the magic
 	},
 
@@ -86,12 +86,22 @@ const controller = {
 
 		storeProducts(productModify) //'ejecuta la funcion y toma como parametro la funcion que quiere guardar el el Json'
 		res.redirect('/')
-		// Do the magic
+
 	},
 
 	// Delete - Delete one product from DB
 	destroy: (req, res) => {
-		// Do the magic
+		
+		const {id} = req.params
+
+		const products = loadProducts()
+
+		const productModify = products.filter( product => product.id !== +id)
+		storeProducts(productModify) //'ejecuta la funcion y toma como parametro la funcion que quiere guardar el el Json'
+		
+		res.redirect('/products')
+
+
 	}
 };
 
