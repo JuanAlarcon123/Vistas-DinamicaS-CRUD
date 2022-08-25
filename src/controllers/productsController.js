@@ -1,5 +1,4 @@
-const{loadProducts,storeProducts}=require('../data/productsModule')
-const products = loadProducts()
+const { loadProducts, storeProducts } = require('../data/productsModule')
 
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -7,16 +6,20 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const controller = {
 	// Root - Show all products
 	index: (req, res) => {
+		const products = loadProducts()
+
+		return res.render('products',{ products, toThousand})
 		// Do the magic
 	},
 
 	// Detail - Detail from one product
-	
+
 	detail: (req, res) => {
+		const products = loadProducts()
 
 		let product = products.find(product => product.id === +req.params.id)// aca filtro los productos i se hace visible el producto que sea ifual al id
-	
-		res.render('detail',{
+
+		res.render('detail', {
 			product, toThousand
 		})
 
@@ -25,47 +28,69 @@ const controller = {
 
 	// Create - Form to create
 	create: (req, res) => {
+		res.render('product-create-form')
 		// Do the magic
 	},
-	
+
 	// Create -  Method to store
 	store: (req, res) => {
-		// Do the magic
+		const products = loadProducts()
+
+		const { name, description, price, discount, category } = req.body //traigo los datos que vienen en el formulario
+
+		const newProduct = {//creo un nuevo objeto el cual voy a agregar a la base de datos
+			id: (products[products.length - 1].id + 1),
+			name: name.trim(),// aca modifico los valores que vienen del req.body
+			description: description.trim(),
+			category,
+			discount: +discount,
+			price: +price,
+			image: 'default-image.png'
+		}
+
+
+		const productModify = [...products, newProduct] //agrego el objeto a la base de datos
+		storeProducts(productModify) //'ejecuta la funcion y toma como parametro la funcion que quiere guardar el el Json'
+		res.redirect('/products')
 	},
 
 	// Update - Form to edit
 	edit: (req, res) => {
+		const products = loadProducts()
 
-		const product = products.find ( product => product.id === +req.params.id)
-		res.render('product-edit-form', {product
+		const product = products.find(product => product.id === +req.params.id)
+		res.render('product-edit-form', {
+			product
 		})
 		// Do the magic
 	},
 	// Update - Method to update
 	update: (req, res) => {
+		const products = loadProducts()
 
-		const {name,description,price,discount,category} = req.body
-		
-		const productModify = products.map(product => { 
-			if(product.id === +req.params.id) {
+		const { name, description, price, discount, category } = req.body
+
+		const productModify = products.map(product => {
+			if (product.id === +req.params.id) {
 				return {
 					...product,
 					name: name.trim(),
-					price : +price,
+					price: +price,
 					discount: +discount,
 					category,
-					description:description.trim()
-				}}	
-				return product
+					description: description.trim()
+				}
+			}
+			return product
 		})
 
 		storeProducts(productModify) //'ejecuta la funcion y toma como parametro la funcion que quiere guardar el el Json'
-res.redirect('/')
+		res.redirect('/')
 		// Do the magic
-	} ,
+	},
 
 	// Delete - Delete one product from DB
-	destroy : (req, res) => {
+	destroy: (req, res) => {
 		// Do the magic
 	}
 };

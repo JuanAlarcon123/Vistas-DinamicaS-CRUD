@@ -8,7 +8,7 @@ const loadProducts = () => {
 }
 
 
-const storeProducts = (products) => fs.writeFileSync(path.join(__dirname,'productsDataBase.json'), JSON.stringify(products),'utf-8')
+const storeProducts = (products) => fs.writeFileSync(path.join(__dirname,'productsDataBase.json'), JSON.stringify(products,null, 3),'utf-8')
 
 
 module.exports = {
