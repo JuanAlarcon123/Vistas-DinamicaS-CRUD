@@ -96,7 +96,8 @@ const controller = {
 
 		const products = loadProducts()
 
-		const productModify = products.filter( product => product.id !== +id)
+		const productModify = products.filter( product => product.id !== +id) // recorro el array y me devuelve todo cuyo id, sea diferente al que me muestra el id actual, osea que me da por resultado una lista sin el producto actual
+		
 		storeProducts(productModify) //'ejecuta la funcion y toma como parametro la funcion que quiere guardar el el Json'
 		
 		res.redirect('/products')
