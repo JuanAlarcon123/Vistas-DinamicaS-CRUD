@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {uploadImageProducts} =require('../mIddelword.js/upLoadFile')
+const {uploadImageProducts} =require('../mIddelword/upLoadFile')
 
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
