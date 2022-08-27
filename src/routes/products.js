@@ -1,6 +1,8 @@
 // ************ Require's ************
 const express = require('express');
 const router = express.Router();
+const {uploadImageProducts} =require('../mIddelword/upLoadFile')
+
 
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
@@ -10,7 +12,8 @@ router.get('/', productsController.index);
 
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/create', productsController.create); //recibe los datos del formulario
-router.post('/store', productsController.store); // este los procesa
+router.post('/store', uploadImageProducts.single('imagen'),productsController.store); // este los procesa
+/* aplico el middelware */
 
 
 /*** GET ONE PRODUCT ***/ 

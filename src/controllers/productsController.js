@@ -45,13 +45,14 @@ const controller = {
 			category,
 			discount: +discount,
 			price: +price,
-			image: 'default-image.png'
+			image: req.file ? req.file.filename : 'default-image.png'
+			/*  si req.file existe, mandame lo que figura el req.file.filename, de lo contrario dame una foto por defecto */
 		}
 
 
 		const productModify = [...products, newProduct] //agrego el objeto a la base de datos
 		storeProducts(productModify) //'ejecuta la funcion y toma como parametro la funcion que quiere guardar el el Json'
-		res.redirect('/products')
+		res.redirect('/products/detail/' + newProduct.id )
 	},
 
 	// Update - Form to edit
