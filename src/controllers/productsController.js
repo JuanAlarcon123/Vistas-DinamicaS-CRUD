@@ -34,6 +34,8 @@ const controller = {
 
 	// Create -  Method to store
 	store: (req, res) => {
+
+	
 		const products = loadProducts()
 
 		const { name, description, price, discount, category } = req.body //traigo los datos que vienen en el formulario
@@ -101,7 +103,7 @@ const controller = {
 		
 		storeProducts(productModify) //'ejecuta la funcion y toma como parametro la funcion que quiere guardar el el Json'
 		
-		res.redirect('/products')
+		res.redirect('/')
 
 
 	}
