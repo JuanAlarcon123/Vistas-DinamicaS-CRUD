@@ -13,8 +13,8 @@
 				<h2 class="products-title">Formulario de creación de productos</h2>
 			</div>
 		</div>
-		<div class="col-12">
-			<form action="/products/store" method="post">
+		<div class="col-12"><!-- para Multer agregamos en ENCTYPE y al input le pusimos que acepte solo imagenes -->
+			<form action="/products/store" method="post" enctype="multipart/form-data">
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Nombre del producto:</label>
@@ -36,9 +36,13 @@
 							<option value="visited">Últimos agregados</option>
 						</select>
 					</div>
-					<div class="col-12">
+					<div class="col-8">
 						<label for="description" class="form-label">Descipción:</label>
 						<textarea name="description" id="description" class="form-input"></textarea>
+					</div>
+					<div class="col-4">
+						<label for="subirArchivo" class="form-label">Descipción:</label>
+						<input type="file" name="imagen" id="subirArchivo" class="form-input" accept="image/*"></input>
 					</div>
 					<div class="col-12">
 						<button type="submit" class="buy-now-button">Guardar producto</button>
