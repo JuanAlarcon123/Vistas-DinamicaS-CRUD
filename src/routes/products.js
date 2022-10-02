@@ -21,7 +21,7 @@ router.get('/detail/:id', productsController.detail);
 
 /*** EDIT ONE PRODUCT ***/ 
 router.get('/edit/:id', productsController.edit); 
-router.put('/update/:id', productsController.update); // el PUT actualiza la informacion del Get
+router.put('/update/:id',uploadImageProducts.single('imagen'), productsController.update); // el PUT actualiza la informacion del Get
 
 
 /*** DELETE ONE PRODUCT***/ 
